@@ -1,5 +1,5 @@
 # OpenDryer
-Open Source Arduino code to dry stuff in a semi controlled environment
+## an Open Source Arduino code to dry stuff in a semi controlled environment
 
 
 ### Purpose of the project
