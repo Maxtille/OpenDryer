@@ -48,4 +48,4 @@
 - Air extractor effective debit in m³/h should be more than 20x room volume in m³
 - Oscillating fan should be aimed to the intake or a wall but not directly to the stuff you want tor dry
 - Different sensors should be dispatched accross different position in the room, even at different height, next to your drying stuff
-- 
+- Intake air is supposed to be a bit dryer than your target RH, and at ideal temperature
