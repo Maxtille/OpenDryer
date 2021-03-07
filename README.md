@@ -12,7 +12,40 @@
 
 - Arduino UNO 
 - Dual Relay shield 
-- 3x LED 
+- 4x LED 
 - 3x DHT22 sensors
 - SDCard shield
+- 
+
+
+### Pin list
+
+- DIG0
+- DIG1  : LED + Relay 1, air extractor
+- DIG2  : LED + Relay 2, Oscillating fan
+- DIG3
+- DIG4
+- DIG5
+- DIG6
+- DIG7
+- DIG8  : Sensor 1
+- DIG9  : Sensor 2
+- DIG10 : Sensor3
+- DIG11 : 
+- DIG12 : LED Renewing cycle
+- DIG13 : LED Working (LED_BUILTIN)
+- AN0
+- AN1
+- AN2
+- AN3
+- AN4
+- AN5
+- AN6
+- AN7
+
+
+### Setup Recommandations 
+- Air extractor effective debit in m³/h should be more than 20x room volume in m³
+- Oscillating fan should be aimed to the intake or a wall but not directly to the stuff you want tor dry
+- Different sensors should be dispatched accross different position in the room, even at different height, next to your drying stuff
 - 
