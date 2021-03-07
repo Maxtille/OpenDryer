@@ -81,14 +81,14 @@ void loop() {
   //évaluation de l'état du système
   switch (loopCount)
   {
-    case 1080 : //après 1080 loop il devrait s'etre passé 3h
+    case 6 : //après 1080 loop il devrait s'etre passé 3h, ici on teste sur 1 min
     {//renouvellement automatique de l'air une fois toute les 3h (relais ON pendant 5 min)
       digitalWrite(RELAY, HIGH);
       isRenewing = true;
       loopCount =0;
       break;
     }
-    case 30 : //si renouvellement, stop
+    case 1 : //si renouvellement, stop ici la durée est bien de 10 sec, soit une seul loop et pas 30
     {
       if(isRenewing)
         digitalWrite(RELAY, LOW);
