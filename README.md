@@ -33,7 +33,7 @@
 - DIG10 : Sensor3
 - DIG11 : 
 - DIG12 : LED Renewing cycle
-- DIG13 : LED Working (LED_BUILTIN)
+- DIG13 : LED Everything is ok (LED_BUILTIN)
 - AN0
 - AN1
 - AN2
