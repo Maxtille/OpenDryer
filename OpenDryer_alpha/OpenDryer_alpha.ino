@@ -9,6 +9,8 @@
 
 #include <DHT_U.h>
 #include <DHT.h>
+#include <SPI.h>
+#include <SD.h>
 
 
 #define DHTPINH 8 // broche ou l'on a branche le capteurH
@@ -23,20 +25,62 @@ DHT dht_h(DHTPINH, DHTTYPE);//déclaration du capteurH
 DHT dht_m(DHTPINM, DHTTYPE);//déclaration du capteurM
 DHT dht_l(DHTPINL, DHTTYPE);//déclaration du capteurL
 
-void setup() {
+File logFile;
 
+bool save(float tA, float hA, float tB, float hB, float tC, float hC,float tM, float hM, unsigned short int etat ) {
+
+  logFile = SD.open("log.txt", FILE_WRITE);
+  logFile.print(tA);
+  logFile.print("/");
+  logFile.print(hA);
+  logFile.print("/");
+  logFile.print(tB);
+  logFile.print("/");
+  logFile.print(hB);
+  logFile.print("/");
+  logFile.print(tC);
+  logFile.print("/");
+  logFile.print(hC);
+  logFile.print("/");
+  logFile.print(tM);
+  logFile.print("/");
+  logFile.print(hM);
+  logFile.print("/");
+  logFile.println(etat);
+  logFile.close();
+  return(true);
+}
+
+void initSD() {
+  logFile = SD.open("log.txt", FILE_WRITE);
+  logFile.println("tempA/humA/tempB/humB/tempC/humC/tempMoy/humMoy/state");
+  logFile.close();
+}
+
+void setup() {
 
   pinMode(DHTPINH, INPUT);
   pinMode(DHTPINM, INPUT);
   pinMode(DHTPINL, INPUT);
   pinMode(RELAY, OUTPUT);
+  pinMode(LED_OK, OUTPUT);
   Serial.begin(9600);
+  while (!Serial) {delay(10);}
   Serial.print("Initialisation");
   dht_h.begin();
   dht_m.begin();
   dht_l.begin();
   Serial.println(" ok");
-  pinMode(LED_OK, OUTPUT);
+  Serial.println("Initialisation carte SD");
+  if (!SD.begin(10)) {
+    Serial.println("initialization failed!");
+    delay(1000);
+    while (1);
+    } 
+  initSD();  
+  Serial.println("OK");
+  
+  
 }
 
 unsigned int loopCount =0;    //compteur du nombre de fois que loop a été executé
@@ -117,7 +161,7 @@ void loop() {
   
 
   //Sauvegardes des données et évènnements sur sd
-
+  save(tempH,humH,tempM,humM,tempL,humL,tempMoy,humMoy,1);
 
 
  //Timing de la boucle + LED 
