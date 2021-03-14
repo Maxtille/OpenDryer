@@ -20,20 +20,20 @@
 
 ### Pin list
 
-- DIG0
+- DIG0  : LED Everything is ok (not the LED_BUILTIN)
 - DIG1  : LED + Relay 1, air extractor
 - DIG2  : LED + Relay 2, Oscillating fan
-- DIG3
+- DIG3  : LED Renewing cycle
 - DIG4
-- DIG5
-- DIG6
-- DIG7
-- DIG8  : Sensor 1
-- DIG9  : Sensor 2
-- DIG10 : Sensor3
-- DIG11 : 
-- DIG12 : LED Renewing cycle
-- DIG13 : LED Everything is ok (LED_BUILTIN)
+- DIG5  : Sensor 1
+- DIG6  : Sensor 2
+- DIG7  : Sensor3
+- DIG8
+- DIG9
+- DIG10 : SD CS
+- DIG11 : SD MOSI
+- DIG12 : SD MISO
+- DIG13 : SD SCK
 - AN0
 - AN1
 - AN2

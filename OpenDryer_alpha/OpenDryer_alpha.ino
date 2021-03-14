@@ -13,13 +13,15 @@
 #include <SD.h>
 
 
-#define DHTPINH 8 // broche ou l'on a branche le capteurH
-#define DHTPINM 9 // broche ou l'on a branche le capteurM
-#define DHTPINL 10 // broche ou l'on a branche le capteurL
+#define DHTPINH 5 // broche ou l'on a branche le capteurH
+#define DHTPINM 6 // broche ou l'on a branche le capteurM
+#define DHTPINL 7 // broche ou l'on a branche le capteurL
 #define DHTTYPE DHT22
-#define LED_RENEW 12 //broche ou l'on connecte la led qui indique le renouvellement automatique
-#define LED_OK LED_BUILTIN // broche ou l'on connecte la led qui indique par son clignottement que le programme tourne normalement
+#define LED_RENEW 3 //broche ou l'on connecte la led qui indique le renouvellement automatique
+#define LED_OK 0 // broche ou l'on connecte la led qui indique par son clignottement que le programme tourne normalement
 #define RELAY 1   // broche ou l'on a branche le relais et la led qui indique l'état du relais
+#define OSCFAN 2
+
 
 DHT dht_h(DHTPINH, DHTTYPE);//déclaration du capteurH
 DHT dht_m(DHTPINM, DHTTYPE);//déclaration du capteurM
@@ -85,12 +87,16 @@ void setup() {
 
 unsigned int loopCount =0;    //compteur du nombre de fois que loop a été executé
 bool isRenewing = false;      //true = cycle de renouvellement automatique en cours
+float humSet =0;              //humidité cible
 
 void loop() {
   //déclaration et initialisation des variables
   unsigned long StartLoopTime = millis() ;
   float tempH=0 , tempM=0 , tempL=0 , humH=0 , humM=0 , humL=0 ;
-  float humMoy=0, tempMoy=0, tempMin=0, tempMax=0, humMin=0, humMax=0;
+  float humMoy=0, tempMoy=0;
+
+  //Lecture du potentiomètre pour déterminer la valeur cible
+  
   
   // La lecture du capteur prend 250ms
   // Les valeurs lues peuvent etre vieilles de jusqu'a 2 secondes (le capteur est lent)
@@ -119,7 +125,7 @@ void loop() {
   //float indiceH = dht_h.computeHeatIndex(tempH, humH, false);
   
 
-  //Calcul des moyennes (et des minimas maximas)
+  //Calcul des moyennes 
   tempMoy = ( tempH + tempM + tempL ) / 3 ;
   humMoy = ( humH + humM + humL ) / 3 ;
 
@@ -142,7 +148,7 @@ void loop() {
       break;
     }
     default:
-    {//maintien à une hygro stable et réglable via un potentiomètre analogique (45-70)
+    {
       
     }
   }
