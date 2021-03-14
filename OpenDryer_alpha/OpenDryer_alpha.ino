@@ -41,12 +41,13 @@ void setup() {
 
 unsigned int loopCount =0;    //compteur du nombre de fois que loop a été executé
 bool isRenewing = false;      //true = cycle de renouvellement automatique en cours
+float humSet =0;              //humidité cible
 
 void loop() {
   //déclaration et initialisation des variables
   unsigned long StartLoopTime = millis() ;
   float tempH=0 , tempM=0 , tempL=0 , humH=0 , humM=0 , humL=0 ;
-  float humMoy=0, tempMoy=0, tempMin=0, tempMax=0, humMin=0, humMax=0;
+  float humMoy=0, tempMoy=0 ;
   
   // La lecture du capteur prend 250ms
   // Les valeurs lues peuvent etre vieilles de jusqu'a 2 secondes (le capteur est lent)
@@ -75,7 +76,7 @@ void loop() {
   //float indiceH = dht_h.computeHeatIndex(tempH, humH, false);
   
 
-  //Calcul des moyennes (et des minimas maximas)
+  //Calcul des moyennes
   tempMoy = ( tempH + tempM + tempL ) / 3 ;
   humMoy = ( humH + humM + humL ) / 3 ;
 
@@ -99,7 +100,14 @@ void loop() {
     }
     default:
     {//maintien à une hygro stable et réglable via un potentiomètre analogique (45-70)
-      
+       if(humMoy > (humSet+2.5))
+       {
+        digitalWrite(RELAY, HIGH);
+       }
+       else if(humMoy < (humSet-1))
+       {
+        digitalWrite(RELAY,LOW);
+       }
     }
   }
   
