@@ -149,7 +149,15 @@ void loop() {
     }
     default:
     {
-      
+      //maintien à une hygro stable et réglable via un potentiomètre analogique (45-70)
+       if(humMoy > (humSet+2.5))
+       {
+        digitalWrite(RELAY, HIGH);
+       }
+       else if(humMoy < (humSet-1))
+       {
+        digitalWrite(RELAY,LOW);
+       }
     }
   }
   
