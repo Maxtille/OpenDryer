@@ -13,6 +13,7 @@
 #include <SD.h>
 
 
+#define POTAR A0 // broche ou l'on branche la pin du potentiomètre 10k
 #define DHTPINH 5 // broche ou l'on a branche le capteurH
 #define DHTPINM 6 // broche ou l'on a branche le capteurM
 #define DHTPINL 7 // broche ou l'on a branche le capteurL
@@ -78,7 +79,7 @@ void setup() {
     Serial.println("initialization failed!");
     delay(1000);
     while (1);
-    } 
+    }
   initSD();  
   Serial.println("OK");
   
@@ -88,6 +89,7 @@ void setup() {
 unsigned int loopCount =0;    //compteur du nombre de fois que loop a été executé
 bool isRenewing = false;      //true = cycle de renouvellement automatique en cours
 float humSet =0;              //humidité cible
+int potVal =0;                //valeur du potentiomètre
 
 void loop() {
   //déclaration et initialisation des variables
@@ -97,8 +99,9 @@ void loop() {
   float humMoy=0, tempMoy=0;
 
   //Lecture du potentiomètre pour déterminer la valeur cible
+  potVal= analogRead(POTAR);
+  humSet = map(potVal,0,1023,45,75); //Potar au min=45% , au max=75%
   
-
   
   // La lecture du capteur prend 250ms
   // Les valeurs lues peuvent etre vieilles de jusqu'a 2 secondes (le capteur est lent)
@@ -154,7 +157,7 @@ void loop() {
     default:
 
     {
-      //maintien à une hygro stable et réglable via un potentiomètre analogique (45-70)
+      //maintien à une hygro stable et réglable via un potentiomètre analogique (45-75)
 
        if(humMoy > (humSet+2.5))
        {
@@ -173,7 +176,9 @@ void loop() {
   Serial.print(" °C, ");
   Serial.print("Humidité moyenne : ") ;
   Serial.print(humMoy);
-  Serial.println(" %");
+  Serial.print(" %, ");
+  Serial.print("humSet = ");
+  Serial.println(humSet);
   if(isRenewing)
     digitalWrite(LED_RENEW,HIGH);
   else
