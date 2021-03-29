@@ -86,7 +86,7 @@ void setup() {
 }
 
 unsigned int loopCount =0;    //compteur du nombre de fois que loop a été executé
-bool isRenewing = false;      //true = cycle de renouvellement automatique en cours
+bool isRenewing = false, isOscillating = false;      //true = cycle de renouvellement automatique en cours
 float humSet =0;              //humidité cible
 
 void loop() {
@@ -135,6 +135,10 @@ void loop() {
 
 
   //évaluation de l'état du système
+  if(loopCount==180||loopCount==360||loopCount==540||loopCount==720||loopCount==900||loopCount==1080) //alumage Osc
+      digitalWrite(OSCFAN, HIGH);
+  else if(loopCount==186||loopCount==366||loopCount==546||loopCount==726||loopCount==906||loopCount==6)//extinction Osc
+      digitalWrite(OSCFAN, LOW);
   switch (loopCount)
   {
     case 1080 : //après 1080 loop il devrait s'etre passé 3h
