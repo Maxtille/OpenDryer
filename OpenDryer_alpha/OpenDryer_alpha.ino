@@ -21,7 +21,7 @@
 #define LED_RENEW 3 //broche ou l'on connecte la led qui indique le renouvellement automatique
 #define LED_OK 0 // broche ou l'on connecte la led qui indique par son clignottement que le programme tourne normalement
 #define RELAY 1   // broche ou l'on a branche le relais et la led qui indique l'état du relais
-#define OSCFAN 2
+#define OSCFAN 2 // broche ou l'on branche le relais du brasseur d'air et la led qui indique son fonctionnement
 
 
 DHT dht_h(DHTPINH, DHTTYPE);//déclaration du capteurH
@@ -87,7 +87,7 @@ void setup() {
 }
 
 unsigned int loopCount =0;    //compteur du nombre de fois que loop a été executé
-bool isRenewing = false;      //true = cycle de renouvellement automatique en cours
+bool isRenewing = false, isOscillating = false;      //isRenewing true = cycle de renouvellement automatique en cours | isOscillating true = brasseur d'air actif
 float humSet =0;              //humidité cible
 int potVal =0;                //valeur du potentiomètre
 
@@ -138,6 +138,10 @@ void loop() {
 
 
   //évaluation de l'état du système
+  if(loopCount==180||loopCount==360||loopCount==540||loopCount==720||loopCount==900||loopCount==1080) //alumage Osc
+      digitalWrite(OSCFAN, HIGH);
+  else if(loopCount==186||loopCount==366||loopCount==546||loopCount==726||loopCount==906||loopCount==6)//extinction Osc
+      digitalWrite(OSCFAN, LOW);
   switch (loopCount)
   {
     case 1080 : //après 1080 loop il devrait s'etre passé 3h
