@@ -116,13 +116,13 @@ void loop() {
 
   //On verifie si la lecture a echoue, si oui on quitte la boucle pour recommencer.
   if (isnan(humH) || isnan(tempH)  )
-  { Serial.println("Echec à la lecture du capteur Haut!");delay(1000);
+  { Serial.println("Echec à la lecture du capteur Haut!");delay(3000);
     return ;}
   if (isnan(humM) || isnan(tempM)  )
-  { Serial.println("Echec à la lecture du capteur Millieu!");delay(1000);
+  { Serial.println("Echec à la lecture du capteur Millieu!");delay(3000);
     return ;}
   if (isnan(humL) || isnan(tempL)  )
-  { Serial.println("Echec à la lecture du capteur Bas!");delay(1000);
+  { Serial.println("Echec à la lecture du capteur Bas!");delay(3000);
     return ;}
 
 
