@@ -14,14 +14,14 @@
 
 
 #define POTAR A0 // broche ou l'on branche la pin du potentiomètre 10k
-#define DHTPINH 5 // broche ou l'on a branche le capteurH
-#define DHTPINM 6 // broche ou l'on a branche le capteurM
-#define DHTPINL 7 // broche ou l'on a branche le capteurL
+#define DHTPINH 7 // broche ou l'on a branche le capteurH
+#define DHTPINM 8 // broche ou l'on a branche le capteurM
+#define DHTPINL 9 // broche ou l'on a branche le capteurL
 #define DHTTYPE DHT22
-#define LED_RENEW 3 //broche ou l'on connecte la led qui indique le renouvellement automatique
-#define LED_OK 0 // broche ou l'on connecte la led qui indique par son clignottement que le programme tourne normalement
-#define RELAY 1   // broche ou l'on a branche le relais et la led qui indique l'état du relais
-#define OSCFAN 2 // broche ou l'on branche le relais du brasseur d'air et la led qui indique son fonctionnement
+#define LED_OK 2 // broche ou l'on connecte la led qui indique par son clignottement que le programme tourne normalement
+#define RELAY 3   // broche ou l'on a branche le relais et la led qui indique l'état du relais
+#define OSCFAN 4 // broche ou l'on branche le relais du brasseur d'air et la led qui indique son fonctionnement
+#define LED_RENEW 5 //broche ou l'on connecte la led qui indique le renouvellement automatique
 
 
 DHT dht_h(DHTPINH, DHTTYPE);//déclaration du capteurH
@@ -100,7 +100,7 @@ void loop() {
 
   //Lecture du potentiomètre pour déterminer la valeur cible
   potVal= analogRead(POTAR);
-  humSet = map(potVal,0,1023,45,75); //Potar au min=45% , au max=75%
+  humSet = map(potVal,0,1023,75,45); //Potar au min=45% , au max=75%
   
   
   // La lecture du capteur prend 250ms
