@@ -6,7 +6,7 @@
 - Powering on and off the extraction of the room in function of the choosen relative humidity vs relative humidity of the room
 - Automaticaly and rapidly renewing the room air every 3 hours
 - Activating for 1 min every 30 min or so a fan which will ensure uniform distribution of new air
-- Saveing a graph of HR, Temp, and  extraction cycle on a microSD card
+- Saveing data for a graph of HR, Temp, and  extraction cycle on a microSD card
 
 ### What you need
 
@@ -20,21 +20,21 @@
 
 ### Pin list
 
-- DIG0  : LED Everything is ok (not the LED_BUILTIN)
-- DIG1  : LED + Relay 1, air extractor
-- DIG2  : LED + Relay 2, Oscillating fan
-- DIG3  : LED Renewing cycle
-- DIG4
-- DIG5  : Sensor 1
-- DIG6  : Sensor 2
-- DIG7  : Sensor3
-- DIG8
-- DIG9
+- DIG0
+- DIG1
+- DIG2  : LED Everything is ok (not the LED_BUILTIN)
+- DIG3  : LED + Relay 1, air extractor
+- DIG4  : LED + Relay 2, Oscillating fan
+- DIG5  : LED Renewing cycle 
+- DIG6 
+- DIG7  : Sensor 1
+- DIG8  : Sensor 2
+- DIG9  : Sensor 3
 - DIG10 : SD CS
 - DIG11 : SD MOSI
 - DIG12 : SD MISO
 - DIG13 : SD SCK
-- AN0
+- AN0   : Analog potentiometer 
 - AN1
 - AN2
 - AN3
